@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hitung Mundur Pengumuman UTBK 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f4f7fc, #e2ecf9);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img.logo {
+      width: 690px; /* DIPERBESAR */
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: #003366;
+      font-weight: 600;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-box {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 10px;
+      min-width: 80px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 2em;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .label {
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    #button-container {
+      display: none;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    #button-container p {
+      color: #003366;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    a.button {
+      background: #003366;
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+      font-size: 1rem;
+      min-width: 200px;
+    }
+
+    a.button:hover {
+      background: #00509e;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 500px) {
+      img.logo {
+        width: 200px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      .time-box {
+        padding: 15px 20px;
+      }
+
+      .time-box span {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="img/snpmb-logo.png" alt="Logo SNPMB" class="logo">
+  <h1>Hitung Mundur Pengumuman UTBK 2025</h1>
+
+  <div class="countdown" id="countdown">
+    <div class="time-box"><span id="days">0</span><div class="label">Hari</div></div>
+    <div class="time-box"><span id="hours">0</span><div class="label">Jam</div></div>
+    <div class="time-box"><span id="minutes">0</span><div class="label">Menit</div></div>
+    <div class="time-box"><span id="seconds">0</span><div class="label">Detik</div></div>
+  </div>
+
+  <div id="button-container">
+    <p>Pengumuman UTBK telah tersedia!</p>
+    <a href="https://pengumuman-snbt-snpmb.bppp.kemdikbud.go.id/" target="_blank" class="button">Cek Pengumuman</a>
+  </div>
+
+  <script>
+    const targetDate = new Date("2025-05-28T15:00:00+07:00").getTime();
+    const countdown = document.getElementById("countdown");
+    const buttonContainer = document.getElementById("button-container");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        countdown.style.display = "none";
+        buttonContainer.style.display = "block";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
